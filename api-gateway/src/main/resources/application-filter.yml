@@ -1,0 +1,41 @@
+server:
+  port: 8899
+
+
+service-url:
+  user-service: http://localhost:8882
+spring:
+  cloud:
+    gateway:
+      routes:
+        - id: hytrix
+          uri: http://127.0.0.1:8089
+          predicates:
+            - Path=/**
+          filters:
+            - name: Hystrix
+              args:
+                name: fallbackcmd
+                fallbackUri: forward:/fallback
+#        - id: pre_fix
+#          uri: http://127.0.0.1:8089
+#          predicates:
+#            - Path=/user/**
+#            - Method=GET
+#          filters:
+#            - PrefixPath=/user
+
+#        - id: strip_prefix
+#          uri: http://127.0.0.1:8089
+#          predicates:
+#            - Path=/user-service1/**
+#          filters:
+#            - StripPrefix=2
+#      - id: add_parameter
+#        uri: http://127.0.0.1:8089
+#        filters:
+#          # 添加请求参数
+#          - AddRequestParameter=username,macro
+#        predicates:
+#          - Method=GET
+

@@ -1,0 +1,33 @@
+server:
+  port: 8884
+spring:
+  application:
+    name: config-client1
+  cloud:
+    config: # 客户端配置
+      profile: dev
+      label: master
+      #      uri: http://localhost:8883 #配置中心
+      name: config #配置文件名称
+      discovery:
+        enabled: true
+        service-id: config-service1
+        # 配置中心认证
+#      username: liwy
+#      password: 123456
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:8080/eureka
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh-bus

@@ -1,0 +1,30 @@
+server:
+  port: 8881
+spring:
+  application:
+    name: zuul-service1
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://127.0.0.1:8080/eureka
+
+zuul:
+  # 禁用过滤器
+  PreLog:
+    pre:
+      disable: true
+  routes:
+    user-service:
+      path: /userService1/**
+    feign-service:
+      path: /feignService1/**
+  # 添加最初host
+  add-host-header: true
+management:
+  endpoint:
+  endpoints:
+    web:
+      exposure:
+        include: routes

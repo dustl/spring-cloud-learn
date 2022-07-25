@@ -3,11 +3,17 @@ server:
 spring:
   application:
     name: ribbon-service1
+  zipkin:
+    base-url: localhost:9411
+  sleuth:
+    sampler:
+      probability: 0.1
 eureka:
   client:
     fetch-registry: true
     register-with-eureka: true
     service-url:
       defaultZone: http://127.0.0.1:8080/eureka
+
 service-url:
   user-service: http://user-service

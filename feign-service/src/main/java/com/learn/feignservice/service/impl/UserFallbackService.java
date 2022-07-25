@@ -14,13 +14,13 @@ import org.springframework.stereotype.Service;
 public class UserFallbackService implements UserService {
     @Override
     public CommonResult create(User user) {
-        User defaultUser = new User(-1L, "defaultUser", "123456");
+        User defaultUser = new User(-1L, "defaultUser", "123456789");
         return new CommonResult<>(defaultUser);
     }
 
     @Override
     public CommonResult<User> getUser(Long id) {
-        User defaultUser = new User(-1L, "defaultUser", "123456");
+        User defaultUser = new User(-1L, "defaultUser", "123456789");
         return new CommonResult<>(defaultUser);
     }
 

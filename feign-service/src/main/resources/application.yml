@@ -2,7 +2,7 @@ server:
   port: 8039
 spring:
   application:
-    name: feigin-service
+    name: feign-service
 eureka:
   client:
     fetch-registry: true

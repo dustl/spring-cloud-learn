@@ -17,7 +17,7 @@ public interface UserService {
     @PostMapping("/user/create")
     CommonResult create(@RequestBody User user);
 
-    @GetMapping("/user1/{id}")
+    @GetMapping("/user/{id}")
     CommonResult<User> getUser(@PathVariable("id") Long id);
 
     @GetMapping("/user/getByUsername")
