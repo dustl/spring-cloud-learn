@@ -1,0 +1,19 @@
+server:
+  port: 8873
+spring:
+  application:
+    name: admin-client
+  boot:
+    admin:
+      client:
+        url: http://127.0.0.1:8871
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+logging:
+  file: admin-client.log

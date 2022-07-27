@@ -3,11 +3,17 @@ server:
 spring:
   application:
     name: user-service
-  zipkin:
-    base-url: http://localhost:9411
-  sleuth:
-    sampler:
-      probability: 0.1 #设置sleuth的抽样收集概率
+  boot:
+    admin:
+      client:
+        url: http://127.0.0.1:8871
+#  zipkin:
+#    base-url: http://localhost:9411
+#  sleuth:
+#    sampler:
+#      probability: 0.1 #设置sleuth的抽样收集概率
+
+
 
 eureka:
   client:
@@ -15,3 +21,14 @@ eureka:
     fetch-registry: true
     service-url:
       defaultZone: http://127.0.0.1:8080/eureka
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+logging:
+  file: user-service1.log

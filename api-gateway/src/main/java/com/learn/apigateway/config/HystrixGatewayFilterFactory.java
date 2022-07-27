@@ -14,7 +14,7 @@ public class HystrixGatewayFilterFactory extends AbstractGatewayFilterFactory {
 
     @Override
     public GatewayFilter apply(Object config) {
-        
+
         return null;
     }
 }

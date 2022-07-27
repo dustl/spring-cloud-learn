@@ -1,0 +1,39 @@
+server:
+  port: 8088
+
+eureka:
+  client:
+#    fetch-registry: true
+#    register-with-eureka: true
+    service-url:
+      defaultZone: http://127.0.0.1:8080/eureka
+spring:
+  application:
+    name: config-service1
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://gitee.com/LiwBook/myconfig.git
+          username: Liwbook
+          password: liwygit69
+          clone-on-start: true #启动时从git获取配置
+          search-paths: ${spring.application.name} #定义以应用名称为目录下，查找配置
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: guest
+    password: guest
+
+
+
+
+#  security:
+#    user:
+#      name: liwy
+#      password: 123456
+management:
+  endpoints:
+    web:
+      exposure:
+        include: refresh-bus

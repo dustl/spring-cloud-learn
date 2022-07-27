@@ -1,0 +1,30 @@
+#server:
+#  port: 8899
+#
+#
+#service-url:
+#  user-service: http://localhost:8882
+#spring:
+#  cloud:
+#    gateway:
+#      routes:
+##        - id: path_route #路由的ID
+##          uri: ${service-url.user-service}/user/{id} #匹配后路由地址
+#          # 断言，路径相匹配的进行路由
+##          predicates:
+##            - RemoteAddr=192.168.126.178
+##            - Query=username
+##            - Method=GET
+##            - Path=/user/{id}
+#
+#        - id: path_route2
+#          uri: http://127.0.0.1:8882
+#          predicates:
+#            # 按权重分配 20% 的请求打进8882
+#            - Weight=group1,2
+#        - id: path_route3
+#          uri: http://127.0.0.1:8089
+#          predicates:
+#            - # 80%的请求打进8089
+#            - Weight=group1,8
+#
