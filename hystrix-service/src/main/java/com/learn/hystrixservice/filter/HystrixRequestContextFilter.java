@@ -11,7 +11,7 @@ import java.io.IOException;
  * Created by macro on 2019/9/4.
  */
 @Component
-@WebFilter(urlPatterns = "/*",asyncSupported = true)
+@WebFilter(urlPatterns = "/*", asyncSupported = true)
 public class HystrixRequestContextFilter implements Filter {
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {

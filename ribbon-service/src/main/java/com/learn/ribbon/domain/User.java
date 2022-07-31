@@ -9,7 +9,8 @@ public class User {
     private String username;
     private String password;
 
-    public User(){}
+    public User() {
+    }
 
     public User(Long id, String username, String password) {
         this.id = id;

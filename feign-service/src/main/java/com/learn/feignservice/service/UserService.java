@@ -17,18 +17,30 @@ public interface UserService {
     @PostMapping("/user/create")
     CommonResult create(@RequestBody User user);
 
+    /**
+     * 注意！！
+     * 要填写参数别名
+     */
     @GetMapping("/user/{id}")
     CommonResult<User> getUser(@PathVariable("id") Long id);
 
+
+    /**
+     * 注意！！
+     * 要填写参数别名
+     */
     @GetMapping("/user/getByUsername")
     CommonResult<User> getByUsername(@RequestParam(value = "username") String username);
 
     @PostMapping("/user/update")
     CommonResult update(@RequestBody User user);
 
+    /**
+     * 注意！！
+     * 要填写参数别名
+     */
     @PostMapping("/user/delete/{id}")
-    CommonResult delete( @PathVariable("id") Long id);
-
+    CommonResult delete(@PathVariable("id") Long id);
 
 
 }

@@ -21,8 +21,8 @@ public class PreLog extends ZuulFilter {
 
 
     /**
-     *过滤器类型 ：  pre routing post error
-     * */
+     * 过滤器类型 ：  pre routing post error
+     */
     @Override
     public String filterType() {
         return "pre";
@@ -35,7 +35,7 @@ public class PreLog extends ZuulFilter {
 
     /**
      * 是否进行过滤
-     * */
+     */
     @Override
     public boolean shouldFilter() {
         return true;
@@ -44,7 +44,7 @@ public class PreLog extends ZuulFilter {
 
     /**
      * 执行内容，shouldFilter为true执行
-     * */
+     */
     @Override
     public Object run() throws ZuulException {
         RequestContext currentContext = RequestContext.getCurrentContext();
@@ -54,7 +54,7 @@ public class PreLog extends ZuulFilter {
         String requestURI = request.getRequestURI();
         String method = request.getMethod();
 
-        log.info("user:{},host:{}, uri:{},method:{} ",remoteUser,remoteHost,requestURI,method);
+        log.info("user:{},host:{}, uri:{},method:{} ", remoteUser, remoteHost, requestURI, method);
 
         return null;
     }

@@ -21,50 +21,50 @@ spring:
             - PrefixPath=/user
 
 
-#        - id: retry
-#          uri: http://127.0.0.1:8882
-#          predicates:
-#            - Method=GET
-#          filters:
-#            - name: Retry
-#              args:
-#                retries: 2
-#                #返回哪个状态码需要进行重试，返回状态码为5XX进行重试
-#                statuses: BAD_GATEWAY
-#                backoff:
-#                  firstBackoff: 10ms
-#                  maxBackoff: 50ms
-#                  factor: 2
-#                  basedOnPreviousValue: false
-#          - id: requestLimiter
-#            uri: http://127.0.0.1:8882
-#            filters:
-#            - name: RequestRateLimiter
-#              args:
-#                # 每秒允许处理的请求量
-#                redis-rate-limiter.replenishRate: 1
-#                # 每秒最大处理的请求数量
-#                redis-rate-limiter.burstCapacity: 2
-#                # 限流策略，对应的是bean名称
-#                key-resolver: "#{@ipResolver}"
-#            predicates:
-#              - Method=GET
-#        - id: hytrix
-#          uri: http://127.0.0.1:8089
-#          predicates:
-#            - Path=/**
-#          filters:
-#            - name: Hystrix
-#              args:
-#                name: fallbackcmd
-#                fallbackUri: forward:/fallback
-#        - id: pre_fix
-#          uri: http://127.0.0.1:8882
-#          predicates:
-#            - Path=/**
-#            - Method=GET
-#          filters:
-#            - PrefixPath=/user
+  #        - id: retry
+  #          uri: http://127.0.0.1:8882
+  #          predicates:
+  #            - Method=GET
+  #          filters:
+  #            - name: Retry
+  #              args:
+  #                retries: 2
+  #                #返回哪个状态码需要进行重试，返回状态码为5XX进行重试
+  #                statuses: BAD_GATEWAY
+  #                backoff:
+  #                  firstBackoff: 10ms
+  #                  maxBackoff: 50ms
+  #                  factor: 2
+  #                  basedOnPreviousValue: false
+  #          - id: requestLimiter
+  #            uri: http://127.0.0.1:8882
+  #            filters:
+  #            - name: RequestRateLimiter
+  #              args:
+  #                # 每秒允许处理的请求量
+  #                redis-rate-limiter.replenishRate: 1
+  #                # 每秒最大处理的请求数量
+  #                redis-rate-limiter.burstCapacity: 2
+  #                # 限流策略，对应的是bean名称
+  #                key-resolver: "#{@ipResolver}"
+  #            predicates:
+  #              - Method=GET
+  #        - id: hytrix
+  #          uri: http://127.0.0.1:8089
+  #          predicates:
+  #            - Path=/**
+  #          filters:
+  #            - name: Hystrix
+  #              args:
+  #                name: fallbackcmd
+  #                fallbackUri: forward:/fallback
+  #        - id: pre_fix
+  #          uri: http://127.0.0.1:8882
+  #          predicates:
+  #            - Path=/**
+  #            - Method=GET
+  #          filters:
+  #            - PrefixPath=/user
   redis:
     host: localhost
     port: 6379

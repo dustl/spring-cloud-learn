@@ -18,18 +18,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class RateLimiterController {
 
     @GetMapping("/byResource")
-    @SentinelResource(value = "byResource",blockHandler = "handlerException")
+    @SentinelResource(value = "byResource", blockHandler = "handler2Exception", blockHandlerClass = CustomBlockHandler.class)
     public CommonResult byResource() {
         return new CommonResult("按资源限流", 200);
     }
-
 
 
     /**
      * 按URL限流，有默认的限流处理逻辑
      */
     @GetMapping("/byUrl")
-    @SentinelResource(value = "byUrl",blockHandler = "handlerException")
+    @SentinelResource(value = "byUrl", blockHandler = "handlerException")
     public CommonResult byUrl() {
         return new CommonResult("按url限流", 200);
     }
@@ -39,11 +38,12 @@ public class RateLimiterController {
      * 自定义通用的限流处理逻辑
      */
     @GetMapping("/customBlockHandler")
-    @SentinelResource(value = "customBlockHandler", blockHandler = "handlerException",blockHandlerClass = CustomBlockHandler.class)
+    @SentinelResource(value = "customBlockHandler", blockHandler = "handlerException", blockHandlerClass = CustomBlockHandler.class)
     public CommonResult blockHandler() {
         return new CommonResult("限流成功", 200);
     }
-    public CommonResult handlerException(BlockException exception){
-        return new CommonResult("限流~~",200);
+
+    public CommonResult handlerException(BlockException exception) {
+        return new CommonResult("限流~~", 200);
     }
 }

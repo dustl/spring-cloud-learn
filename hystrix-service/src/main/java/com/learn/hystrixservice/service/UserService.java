@@ -38,9 +38,9 @@ public class UserService {
     @Value("${service-url.user-service}")
     private String userServiceUrl;
 
-    @HystrixCommand(fallbackMethod = "getDefaultUser",commandKey = "getUserCommand")
+    @HystrixCommand(fallbackMethod = "getDefaultUser", commandKey = "getUserCommand")
     public CommonResult getUser(Long id) {
-        LOGGER.info("获取user : "+id );
+        LOGGER.info("获取user : " + id);
         return restTemplate.getForObject(userServiceUrl + "/user/{1}", CommonResult.class, id);
     }
 
@@ -49,7 +49,7 @@ public class UserService {
         return new CommonResult<>(defaultUser);
     }
 
-    @HystrixCommand(fallbackMethod = "getDefaultUser2",ignoreExceptions = {NullPointerException.class})
+    @HystrixCommand(fallbackMethod = "getDefaultUser2", ignoreExceptions = {NullPointerException.class})
     public CommonResult getUserException(Long id) {
         if (id == 1) {
             throw new IndexOutOfBoundsException();
@@ -66,9 +66,9 @@ public class UserService {
     }
 
     @HystrixCommand(fallbackMethod = "getDefaultUser",
-    commandKey = "getUserCommand",
-    groupKey = "getUserGroup",
-    threadPoolKey = "userPool")
+            commandKey = "getUserCommand",
+            groupKey = "getUserGroup",
+            threadPoolKey = "userPool")
     public CommonResult getUserCommand(@PathVariable Long id) {
         LOGGER.info("getUserCommand id:{}", id);
         return restTemplate.getForObject(userServiceUrl + "/user/{1}", CommonResult.class, id);
@@ -76,7 +76,7 @@ public class UserService {
 
 
     @CacheResult(cacheKeyMethod = "getCacheKey")
-    @HystrixCommand(fallbackMethod = "getDefaultUser",commandKey = "getUserCache")
+    @HystrixCommand(fallbackMethod = "getDefaultUser", commandKey = "getUserCache")
     public CommonResult getUserCache(Long id) {
         LOGGER.info("getUserCache id:{}", id);
         return restTemplate.getForObject(userServiceUrl + "/user/{1}", CommonResult.class, id);
@@ -86,22 +86,24 @@ public class UserService {
     public String getCacheKey(Long id) {
         return String.valueOf(id);
     }
+
     @CacheRemove(commandKey = "getUserCache", cacheKeyMethod = "getCacheKey")
     @HystrixCommand
     public CommonResult removeCache(Long id) {
         LOGGER.info("removeCache id:{}", id);
         return restTemplate.postForObject(userServiceUrl + "/user/delete/{1}", null, CommonResult.class, id);
     }
-    @HystrixCollapser(batchMethod = "getUserByIds",collapserProperties = {
+
+    @HystrixCollapser(batchMethod = "getUserByIds", collapserProperties = {
             @HystrixProperty(name = "timerDelayInMilliseconds", value = "100")
     })
     public Future<User> getUserFuture(Long id) {
-        return new AsyncResult<User>(){
+        return new AsyncResult<User>() {
             @Override
             public User invoke() {
                 CommonResult commonResult = restTemplate.getForObject(userServiceUrl + "/user/{1}", CommonResult.class, id);
                 Map data = (Map) commonResult.getData();
-                User user = BeanUtil.mapToBean(data,User.class,true);
+                User user = BeanUtil.mapToBean(data, User.class, true);
                 LOGGER.info("getUserById username:{}", user.getUsername());
                 return user;
             }
@@ -111,7 +113,7 @@ public class UserService {
     @HystrixCommand
     public List<User> getUserByIds(List<Long> ids) {
         LOGGER.info("getUserByIds:{}", ids);
-        CommonResult commonResult = restTemplate.getForObject(userServiceUrl + "/user/getUserByIds?ids={1}", CommonResult.class, CollUtil.join(ids,","));
+        CommonResult commonResult = restTemplate.getForObject(userServiceUrl + "/user/getUserByIds?ids={1}", CommonResult.class, CollUtil.join(ids, ","));
         return (List<User>) commonResult.getData();
     }
 

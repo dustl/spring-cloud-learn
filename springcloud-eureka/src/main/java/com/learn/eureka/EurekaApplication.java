@@ -3,7 +3,10 @@ package com.learn.eureka;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
-/**启动eureka注册功能*/
+
+/**
+ * 启动eureka注册功能
+ */
 @EnableEurekaServer
 @SpringBootApplication
 public class EurekaApplication {

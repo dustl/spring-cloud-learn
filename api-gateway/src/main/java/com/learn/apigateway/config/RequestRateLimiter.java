@@ -9,8 +9,7 @@ import reactor.core.publisher.Mono;
 /**
  * @Author:liwy
  * @date: 22.7.26
- * @Version:1.0
- * 1：根据username进行限流
+ * @Version:1.0 1：根据username进行限流
  * 2：根据访问ip进行限流
  */
 @Configuration
@@ -26,9 +25,6 @@ public class RequestRateLimiter {
     public KeyResolver ipResolver() {
         return exchange -> Mono.just(exchange.getRequest().getRemoteAddress().getAddress().getHostAddress());
     }
-
-
-
 
 
 }

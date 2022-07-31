@@ -34,14 +34,14 @@ public class UserController {
     @GetMapping("/{id}")
     public CommonResult<User> getUser(@PathVariable Long id) {
         User user = userService.getUser(id);
-        LOGGER.info("根据id获取用户信息，用户名称为：{}",user.getUsername());
+        LOGGER.info("根据id获取用户信息，用户名称为：{}", user.getUsername());
         return new CommonResult<>(user);
     }
 
     @GetMapping("/getUserByIds")
     public CommonResult<List<User>> getUserByIds(@RequestParam List<Long> ids) {
-        List<User> userList= userService.getUserByIds(ids);
-        LOGGER.info("根据ids获取用户信息，用户列表为：{}",userList);
+        List<User> userList = userService.getUserByIds(ids);
+        LOGGER.info("根据ids获取用户信息，用户列表为：{}", userList);
         return new CommonResult<>(userList);
     }
 

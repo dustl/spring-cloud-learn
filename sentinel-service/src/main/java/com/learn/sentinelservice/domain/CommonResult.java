@@ -1,6 +1,7 @@
 package com.learn.sentinelservice.domain;
 
 /**
+ *
  */
 public class CommonResult<T> {
     private T data;
